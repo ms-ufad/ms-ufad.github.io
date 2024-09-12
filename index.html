@@ -1,33 +1,263 @@
-# SADA-Collection
-SADA-Collection （Spoofing, Adversarial, Deepfake Attacks Collection）
-
-# Todo list  
-1、	Releae Dataset  
-
-# Dataset Overview  
-  As shown in Table 1, our MS-UFAD database includes 5000 subjects from 3 ethnic groups (e.g., Asian, African, and European), covering ages from 16 to 80 years old, with a gender ratio close to 1:1. The collection settings include 5 types of lighting conditions (normal, strong, dim, side light, and back light), and scenes include both indoor and outdoor environments. The capturing devices cover 30 different models of Android/Apple smartphones. The attack data generation process is as follows:  
-1.	Presentation Attack: Photo Attack: For each subject, a frame is extracted from its video, printed on high-definition photo paper, and then recaptured with a smartphone.Replay Attack: Each subject's video is displayed on a high-definition screen, and then the video on the screen is recaptured with a smartphone. During capturing, the angle is adjusted appropriately to avoid moire patterns, reflections, and artifacts.
-2.	Adversarial Example Attack: For each subject's video, 10 different adversarial attack algorithms are used to perform untargeted attacks (to make the face comparison model ArcFace ineffective), obtaining adversarial sample data for each video.  
-3.	Deepfake Attack via Face Swapping: For each subject's video and another randomly selected subject's video, face swapping is performed using them as source and target videos respectively, including 12 different face swapping algorithms.  
-4.	Deepfake Attack via Reenactment: A frame is randomly extracted from each subject's video, and a video from another randomly selected subject is used as the source image and driving video for face reenactment, including 14 reenactment algorithms.  
-5.	Deepfake Attack via Editing: For each subject's video, 4 different face editing algorithms are used for digital forgery, including changing expressions, hairstyles, and styles.  
-6.	Deepfake Attack via Talking Head Generation: For each subject, a frame or video is used as the source, and audio as the driving force, with 10 different digital human generation algorithms used to create talking head videos.  
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="MS-UFAD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VistaLLM</title>
   
-  
-To simulate the data collection and usage process of real-world facial recognition systems, we applied three different types of compression to the original facial videos and forged videos, including h264 compression at crf 23 and crf 30, and image compression on html5. These compression operations typically result in the elimination or reduction of various forgery clues, increasing the difficulty of defending against these attacks.  
-Furthermore, based on the basic information of each sample (subject's age, gender, ethnicity, expression, and whether they are wearing glasses), we have generated detailed textual descriptions for each sample in a semi-automated manner using the large-scale image and text model miniCPM. These descriptions include the sample's basic information as well as attack clues for the fake samples.  
-  
-  
-In summary, our TDFAD database contains forged facial data generated from 52 different forms of attacks, including 2 types of spoofs, 10 types of digital adversarial attacks, and 40 types of deepfakes, as well as the corresponding compressed data in h264-c23, h264-c30, and h5 formats.
-# *Advantages of the Dataset*
-  Compared to previous datasets such as GrandFake and UniAttackData, TDFAD has the following advantages:  
-  1.	The dataset is larger in scale, with the number of subject IDs reaching 5,000, covering a comprehensive range of attack types. The creation of forged faces includes the latest digital adversarial sample attacks and deepfake attacks, totaling 52 different attack methods.  
-  2.	The dataset is closer to real-world application scenarios, with complex and varied data collection environments, covering both indoor and outdoor settings, and different lighting conditions. The capturing devices cover mainstream mobile devices; the deepfake attack methods are more    threatening to facial recognition systems, including the latest digital human generation algorithms. Compressed videos and images corresponding to all data have been produced to simulate the compression loss brought about by collection and transmission in real scenarios.  
-  3.	The rich textual descriptions of the samples can be used to improve the classification accuracy of the forgery detection model or to train joint vision-language models for explanatory interpretations of the classification results. Previous datasets did not include such textual descriptions.
-# Table 1 TDFAD dataset
-![image](https://github.com/user-attachments/assets/4c43362a-3d39-48b5-a49c-0a6f455ec237)  
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
-# Table 2 Deepfake methods  
-![image](https://github.com/user-attachments/assets/d20b2b8e-09f4-4d8c-94bf-5ac0b9becfe4)
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon_transparent.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+<style>
+.container {
+  position: relative;
+}
+
+.text-block {
+  position: relative;
+  top: 0px;
+  right: 0px;
+  margin-left: 5px;
+  width: 97.5%;
+  text-align: center;
+  border-radius:10px 10px 0px 0px;
+  border: 1px solid #787878;
+  background-color: #787878;
+  color: white;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar" style="margin-bottom:-40px" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="index.html">
+            VistaLLM
+          </a>
+	  <a class="navbar-item" href="https://shramanpramanick.github.io/EgoVLPv2/">
+            EgoVLPv2
+          </a>
+		  <a class="navbar-item" href="https://shramanpramanick.github.io/VoLTA/">
+            VoLTA
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
 
 
+<section class="hero">
+  <div style="margin-bottom:-80px" class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">MS-UFAD: A Large-Scale Dataset for Real-world Unified Face Attack Detection with Text Description Model</h1>
+          <div class="column has-text-centered">
+            
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Dataset (Coming Soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+			  <!--
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+				 -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">TL;DR</h2>
+		<center>
+        <div class="content has-text-justified" style='width:100%'>
+          <p>
+            TBD.
+		  </p>
+        </div>
+		</center>
+      </div>
+    </div>
+	
+</div>
+</section>
+-->
+
+
+<section class="section">
+	
+  <section class="columns is-vcentered interpolation-panel" width=100%>
+  <div class="container is-max-desktop">
+  <center><h2 class="title is-3">Dataset Overview</h2></center><br>
+	  </br>
+      <p class="content has-text-justified">
+		As shown in  - <strong>Table 1</strong>, our MS-UFAD database includes 5000 subjects from 3 ethnic groups (e.g., Asian, African, and European), covering ages from 16 to 80 years old, with a gender ratio close to 1:1. The collection settings include 5 types of lighting conditions (normal, strong, dim, side light, and back light), and scenes include both indoor and outdoor environments. The capturing devices cover 30 different models of Android/Apple smartphones. The attack data generation process is as follows:
+      </p>
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <p class="content has-text-justified" style='width:100%'>
+		  <ul>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Presentation Attack:</strong> Photo Attack:  For each subject, a frame is extracted from its video, printed on high-definition photo paper, and then recaptured with a smartphone.Replay Attack: Each subject's video is displayed on a high-definition screen, and then the video on the screen is recaptured with a smartphone. During capturing, the angle is adjusted appropriately to avoid moire patterns, reflections, and artifacts.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Adversarial Example Attack:</strong> For each subject's video, 10 different adversarial attack algorithms are used to perform untargeted attacks (to make the face comparison model ArcFace ineffective), obtaining adversarial sample data for each video. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Face Swapping:</strong> For each subject's video and another randomly selected subject's video, face swapping is performed using them as source and target videos respectively, including 12 different face swapping algorithms. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Reenactment:</strong> A frame is randomly extracted from each subject's video, and a video from another randomly selected subject is used as the source image and driving video for face reenactment, including 14 reenactment algorithms. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Editing:</strong> For each subject's video, 4 different face editing algorithms are used for digital forgery, including changing expressions, hairstyles, and styles.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Talking Head Generation:</strong> For each subject, a frame or video is used as the source, and audio as the driving force, with 10 different digital human generation algorithms used to create talking head videos.</p></li>
+		  </ul>
+		  </p>
+        </div>
+      </div>
+      </br>
+	  <p class="content has-text-justified">
+		To simulate the data collection and usage process of real-world facial recognition systems, we applied three different types of compression to the original facial videos and forged videos, including h264 compression at crf 23 and crf 30, and image compression on html5. These compression operations typically result in the elimination or reduction of various forgery clues, increasing the difficulty of defending against these attacks.  
+      </p>
+      </br>
+      <p class="content has-text-justified">
+		Furthermore, based on the basic information of each sample (subject's age, gender, ethnicity, expression, and whether they are wearing glasses), we have generated detailed textual descriptions for each sample in a semi-automated manner using the large-scale image and text model miniCPM. These descriptions include the sample's basic information as well as attack clues for the fake samples.    
+      </p>
+      </br>
+      <p class="content has-text-justified">
+		<strong>In summary, our TDFAD database contains forged facial data generated from 52 different forms of attacks, including 2 types of spoofs, 10 types of digital adversarial attacks, and 40 types of deepfakes, as well as the corresponding compressed data in h264-c23, h264-c30, and h5 formats.</strong>   
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+	
+  <section class="columns is-vcentered interpolation-panel" width=100%>
+  <div class="container is-max-desktop">
+  <center><h2 class="title is-3">Advantages of the Dataset</h2></center><br>
+	  </br>
+      <p class="content has-text-justified">
+		Compared to previous datasets such as GrandFake and UniAttackData, TDFAD has the following advantages:
+      </p>
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <p class="content has-text-justified" style='width:100%'>
+		  <ul>
+			<li><p class="content has-text-justified" style='width:100%'>The dataset is larger in scale, with the number of subject IDs reaching 5,000, covering a comprehensive range of attack types. The creation of forged faces includes the latest digital adversarial sample attacks and deepfake attacks, totaling 52 different attack methods. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'>The dataset is closer to real-world application scenarios, with complex and varied data collection environments, covering both indoor and outdoor settings, and different lighting conditions. The capturing devices cover mainstream mobile devices; the deepfake attack methods are more    threatening to facial recognition systems, including the latest digital human generation algorithms. Compressed videos and images corresponding to all data have been produced to simulate the compression loss brought about by collection and transmission in real scenarios.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'>The rich textual descriptions of the samples can be used to improve the classification accuracy of the forgery detection model or to train joint vision-language models for explanatory interpretations of the classification results. Previous datasets did not include such textual descriptions.</p></li>
+		  </ul>
+		  </p>
+        </div>
+      </div>
+      </br>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+	
+  <section class="columns is-vcentered interpolation-panel" width=100%>
+  <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
+  <center><h2 class="title is-3">TABLE 1 MS-UFAD DataSet</h2></center><br>
+  <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
+	<center>
+      <img src="D:\2024\Q3\deepfake_data\相关论文\github/table2.png"
+                 class="interpolation-image" width=100%/></center>
+      </br>
+  </div>
+</section>
+<section class="section">
+	
+  <section class="columns is-vcentered interpolation-panel" width=100%>
+  <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
+  <center><h2 class="title is-3">TABLE 2 Deepfake Methods</h2></center><br>
+    <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
+	<center>
+      <img src="D:\2024\Q3\deepfake_data\相关论文\github/table1.png"
+                 class="interpolation-image" width=100%/></center>
+	  
+</body>
+</html>
