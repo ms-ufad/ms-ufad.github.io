@@ -56,7 +56,7 @@
   top: 0px;
   right: 0px;
   margin-left: 5px;
-  width: 97.5%;
+  width: 80%;
   text-align: center;
   border-radius:10px 10px 0px 0px;
   border: 1px solid #787878;
@@ -67,6 +67,11 @@
   padding-top: 3px;
   padding-bottom: 3px;
 }
+.center-text {
+  width: 800px; /* 设置文字的宽度 */
+  margin: 0 auto; /* 上下不设置外边距，左右设置外边距自动居中 */
+  text-align: left; /* 设置文字居中显示 */
+}
 </style>
 </head>
 <body>
@@ -74,7 +79,7 @@
 
 
 
-<section class="hero">
+<section class="center-text">
   <div style="margin-bottom:-80px" class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
@@ -135,9 +140,9 @@
 -->
 
 
-<section class="section">
+<section class="center-text">
 	
-  <section class="columns is-vcentered interpolation-panel" width=80%>
+  <section class="columns is-vcentered interpolation-panel" width=100%>
   <div class="container is-max-desktop">
   </br>
   </br>
@@ -151,12 +156,12 @@
         <div class="content">
           <p class="content has-text-justified" style='width:80%'>
 		  <ul>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Presentation Attack:</strong> Photo Attack:  For each subject, a frame is extracted from its video, printed on high-definition photo paper, and then recaptured with a smartphone.Replay Attack: Each subject's video is displayed on a high-definition screen, and then the video on the screen is recaptured with a smartphone. During capturing, the angle is adjusted appropriately to avoid moire patterns, reflections, and artifacts.</p></li>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Adversarial Example Attack:</strong> For each subject's video, 10 different adversarial attack algorithms are used to perform untargeted attacks (to make the face comparison model ArcFace ineffective), obtaining adversarial sample data for each video. </p></li>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Deepfake Attack via Face Swapping:</strong> For each subject's video and another randomly selected subject's video, face swapping is performed using them as source and target videos respectively, including 12 different face swapping algorithms. </p></li>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Deepfake Attack via Reenactment:</strong> A frame is randomly extracted from each subject's video, and a video from another randomly selected subject is used as the source image and driving video for face reenactment, including 14 reenactment algorithms. </p></li>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Deepfake Attack via Editing:</strong> For each subject's video, 4 different face editing algorithms are used for digital forgery, including changing expressions, hairstyles, and styles.</p></li>
-			<li><p class="content has-text-justified" style='width:80%'><strong>Deepfake Attack via Talking Head Generation:</strong> For each subject, a frame or video is used as the source, and audio as the driving force, with 10 different digital human generation algorithms used to create talking head videos.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Presentation Attack:</strong> Photo Attack:  For each subject, a frame is extracted from its video, printed on high-definition photo paper, and then recaptured with a smartphone.Replay Attack: Each subject's video is displayed on a high-definition screen, and then the video on the screen is recaptured with a smartphone. During capturing, the angle is adjusted appropriately to avoid moire patterns, reflections, and artifacts.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Adversarial Example Attack:</strong> For each subject's video, 10 different adversarial attack algorithms are used to perform untargeted attacks (to make the face comparison model ArcFace ineffective), obtaining adversarial sample data for each video. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Face Swapping:</strong> For each subject's video and another randomly selected subject's video, face swapping is performed using them as source and target videos respectively, including 12 different face swapping algorithms. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Reenactment:</strong> A frame is randomly extracted from each subject's video, and a video from another randomly selected subject is used as the source image and driving video for face reenactment, including 14 reenactment algorithms. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Editing:</strong> For each subject's video, 4 different face editing algorithms are used for digital forgery, including changing expressions, hairstyles, and styles.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'><strong>Deepfake Attack via Talking Head Generation:</strong> For each subject, a frame or video is used as the source, and audio as the driving force, with 10 different digital human generation algorithms used to create talking head videos.</p></li>
 		  </ul>
 		  </p>
         </div>
@@ -172,6 +177,7 @@
       </br>
       <p class="content has-text-justified">
 		<strong>In summary, our TDFAD database contains forged facial data generated from 52 different forms of attacks, including 2 types of spoofs, 10 types of digital adversarial attacks, and 40 types of deepfakes, as well as the corresponding compressed data in h264-c23, h264-c30, and h5 formats.</strong>   
+      </br>
       </p>
     </div>
   </div>
@@ -179,21 +185,20 @@
 
 <section class="section">
 	
-  <section class="columns is-vcentered interpolation-panel" width=80%>
+  <section class="columns is-vcentered interpolation-panel" width=100%>
   <div class="container is-max-desktop">
   <center><h2 class="title is-3">Advantages of the Dataset</h2></center><br>
-	  </br>
       <p class="content has-text-justified">
 		Compared to previous datasets such as GrandFake and UniAttackData, <strong>MS-UFAD</strong> has the following advantages:
       </p>
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <p class="content has-text-justified" style='width:80%'>
+          <p class="content has-text-justified" style='width:100%'>
 		  <ul>
-			<li><p class="content has-text-justified" style='width:80%'>The dataset is larger in scale, with the number of subject IDs reaching 5,000, covering a comprehensive range of attack types. The creation of forged faces includes the latest digital adversarial sample attacks and deepfake attacks, totaling 52 different attack methods. </p></li>
-			<li><p class="content has-text-justified" style='width:80%'>The dataset is closer to real-world application scenarios, with complex and varied data collection environments, covering both indoor and outdoor settings, and different lighting conditions. The capturing devices cover mainstream mobile devices; the deepfake attack methods are more    threatening to facial recognition systems, including the latest digital human generation algorithms. Compressed videos and images corresponding to all data have been produced to simulate the compression loss brought about by collection and transmission in real scenarios.</p></li>
-			<li><p class="content has-text-justified" style='width:80%'>The rich textual descriptions of the samples can be used to improve the classification accuracy of the forgery detection model or to train joint vision-language models for explanatory interpretations of the classification results. Previous datasets did not include such textual descriptions.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'>The dataset is larger in scale, with the number of subject IDs reaching 5,000, covering a comprehensive range of attack types. The creation of forged faces includes the latest digital adversarial sample attacks and deepfake attacks, totaling 52 different attack methods. </p></li>
+			<li><p class="content has-text-justified" style='width:100%'>The dataset is closer to real-world application scenarios, with complex and varied data collection environments, covering both indoor and outdoor settings, and different lighting conditions. The capturing devices cover mainstream mobile devices; the deepfake attack methods are more    threatening to facial recognition systems, including the latest digital human generation algorithms. Compressed videos and images corresponding to all data have been produced to simulate the compression loss brought about by collection and transmission in real scenarios.</p></li>
+			<li><p class="content has-text-justified" style='width:100%'>The rich textual descriptions of the samples can be used to improve the classification accuracy of the forgery detection model or to train joint vision-language models for explanatory interpretations of the classification results. Previous datasets did not include such textual descriptions.</p></li>
 		  </ul>
 		  </p>
         </div>
@@ -206,7 +211,7 @@
 
 <section class="section">
 	
-  <section class="columns is-vcentered interpolation-panel" width=80%>
+  <section class="columns is-vcentered interpolation-panel" width=100%>
   <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
   <center><h2 class="title is-3">TABLE 1 MS-UFAD DataSet</h2></center><br>
   <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
@@ -218,7 +223,7 @@
 </section>
 <section class="section">
 	
-  <section class="columns is-vcentered interpolation-panel" width=80%>
+  <section class="columns is-vcentered interpolation-panel" width=100%>
   <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
   <center><h2 class="title is-3">TABLE 2 Deepfake Methods</h2></center><br>
     <div class="hero-body" style='margin-top:-25px;margin-bottom:-25px'>
