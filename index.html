@@ -1,0 +1,33 @@
+# SADA-Collection
+SADA-Collection （Spoofing, Adversarial, Deepfake Attacks Collection）
+
+# Todo list  
+1、	Releae Dataset  
+
+# Dataset Overview  
+  As shown in Table 1, our MS-UFAD database includes 5000 subjects from 3 ethnic groups (e.g., Asian, African, and European), covering ages from 16 to 80 years old, with a gender ratio close to 1:1. The collection settings include 5 types of lighting conditions (normal, strong, dim, side light, and back light), and scenes include both indoor and outdoor environments. The capturing devices cover 30 different models of Android/Apple smartphones. The attack data generation process is as follows:  
+1.	Presentation Attack: Photo Attack: For each subject, a frame is extracted from its video, printed on high-definition photo paper, and then recaptured with a smartphone.Replay Attack: Each subject's video is displayed on a high-definition screen, and then the video on the screen is recaptured with a smartphone. During capturing, the angle is adjusted appropriately to avoid moire patterns, reflections, and artifacts.
+2.	Adversarial Example Attack: For each subject's video, 10 different adversarial attack algorithms are used to perform untargeted attacks (to make the face comparison model ArcFace ineffective), obtaining adversarial sample data for each video.  
+3.	Deepfake Attack via Face Swapping: For each subject's video and another randomly selected subject's video, face swapping is performed using them as source and target videos respectively, including 12 different face swapping algorithms.  
+4.	Deepfake Attack via Reenactment: A frame is randomly extracted from each subject's video, and a video from another randomly selected subject is used as the source image and driving video for face reenactment, including 14 reenactment algorithms.  
+5.	Deepfake Attack via Editing: For each subject's video, 4 different face editing algorithms are used for digital forgery, including changing expressions, hairstyles, and styles.  
+6.	Deepfake Attack via Talking Head Generation: For each subject, a frame or video is used as the source, and audio as the driving force, with 10 different digital human generation algorithms used to create talking head videos.  
+  
+  
+To simulate the data collection and usage process of real-world facial recognition systems, we applied three different types of compression to the original facial videos and forged videos, including h264 compression at crf 23 and crf 30, and image compression on html5. These compression operations typically result in the elimination or reduction of various forgery clues, increasing the difficulty of defending against these attacks.  
+Furthermore, based on the basic information of each sample (subject's age, gender, ethnicity, expression, and whether they are wearing glasses), we have generated detailed textual descriptions for each sample in a semi-automated manner using the large-scale image and text model miniCPM. These descriptions include the sample's basic information as well as attack clues for the fake samples.  
+  
+  
+In summary, our TDFAD database contains forged facial data generated from 52 different forms of attacks, including 2 types of spoofs, 10 types of digital adversarial attacks, and 40 types of deepfakes, as well as the corresponding compressed data in h264-c23, h264-c30, and h5 formats.
+# *Advantages of the Dataset*
+  Compared to previous datasets such as GrandFake and UniAttackData, TDFAD has the following advantages:  
+  1.	The dataset is larger in scale, with the number of subject IDs reaching 5,000, covering a comprehensive range of attack types. The creation of forged faces includes the latest digital adversarial sample attacks and deepfake attacks, totaling 52 different attack methods.  
+  2.	The dataset is closer to real-world application scenarios, with complex and varied data collection environments, covering both indoor and outdoor settings, and different lighting conditions. The capturing devices cover mainstream mobile devices; the deepfake attack methods are more    threatening to facial recognition systems, including the latest digital human generation algorithms. Compressed videos and images corresponding to all data have been produced to simulate the compression loss brought about by collection and transmission in real scenarios.  
+  3.	The rich textual descriptions of the samples can be used to improve the classification accuracy of the forgery detection model or to train joint vision-language models for explanatory interpretations of the classification results. Previous datasets did not include such textual descriptions.
+# Table 1 TDFAD dataset
+![image](https://github.com/user-attachments/assets/4c43362a-3d39-48b5-a49c-0a6f455ec237)  
+
+# Table 2 Deepfake methods  
+![image](https://github.com/user-attachments/assets/d20b2b8e-09f4-4d8c-94bf-5ac0b9becfe4)
+
+
